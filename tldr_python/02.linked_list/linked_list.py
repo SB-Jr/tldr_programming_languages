@@ -72,11 +72,10 @@ class LinkedList(Generic[T]):
 
     def delete_at_begenning(self) -> T:
         val = self.delete_at_pos(0)
-        self.len -=1
         return val
 
     def delete_at_pos(self, pos) -> T:
-        if len == 0 or pos < 0 or pos >= self.len:
+        if self.len == 0 or pos < 0 or (self.len != 0 and pos >= self.len):
             raise Exception('Invalid position')
         if pos == 0:
             val = self.head.get_data()

@@ -49,7 +49,10 @@ def rev_linked_list(head:Node) -> Node:
 
 if __name__ == '__main__':
     ll = LinkedList()
-    n = int(sys.argv[1]) if sys.argv[1] is not None else 10
+    if len(sys.argv) == 2:
+        n = int(sys.argv[1])
+    else:
+        n = 10
     for i in range(n):
         ll.insert_at_begenning(i)
     print(ll.display_list())
