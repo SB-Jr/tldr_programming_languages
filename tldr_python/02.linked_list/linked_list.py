@@ -6,6 +6,7 @@ from typing import TypeVar
 from typing import Generic
 from typing import Optional
 from node import Node
+from typing import overload
 
 T = TypeVar('T')
 
@@ -46,13 +47,34 @@ class LinkedList(Generic[T]):
             else:
                 return self.get_node_at_pos(pos).get_data()
 
-    def insert_at_end(self, data:T):
-        self.insert_at_pos(data, self.len-1, True)
+    def insert_at_end(self, data:T) -> Node:
+        return self.insert_at_pos(data, self.len-1, True)
         
     def insert_at_begenning(self, data:T):
         self.insert_at_pos(data, 0)
 
-    def insert_at_pos(self, data:T, pos:int, at_end = False):
+    def insert_at_pos(self, data:T, pos:[int, Node], at_end:bool = False) -> Node:
+        if type(pos) == int:
+            return self.__insert_at_pos_index(data, pos, at_end)
+        elif type(pos) == Node:
+            return self.__insert_at_pos_node(data, pos)
+        else:
+            raise Exception('Invalid type of position argument passed')
+
+
+    def __insert_at_pos_node(self, data:T, node:Node) -> Node:
+        if node is None:
+            raise Exception('Invalid Node')
+        if data is None:
+            raise Exception('Invalid Data')
+        node_new = Node(data)
+        node_next = node.get_next()
+        node.set_next(node_new)
+        node_new.set_next(node_next)
+        self.len +=1
+        return node_new
+
+    def __insert_at_pos_index(self, data:T, pos:int, at_end = False) -> Node:
         if data == None:
             raise Exception('Invalid Data')
         if pos != 0 and (pos >= self.len or pos < 0):
@@ -69,6 +91,7 @@ class LinkedList(Generic[T]):
             node_pos_prev.set_next(node)
             node.set_next(node_pos)
         self.len += 1
+        return node
 
     def delete_at_begenning(self) -> T:
         val = self.delete_at_pos(0)
