@@ -9,6 +9,10 @@ This by no means covers all the concepts or is beginner friendly.
 ## TOC
 
 - Bash
+- C
 - C++
 - Dart
+- Java
+- JavaScript
+- Lua
 - Python
