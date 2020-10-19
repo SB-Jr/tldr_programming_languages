@@ -6,8 +6,6 @@ Python has 2 ways of implementing interface:
 
 - Formal Interface
 
-
-
 ## Informal Interface
 
 In certain circumstances, you may not need the strict rules of a formal 
@@ -44,8 +42,6 @@ Thus informal Interface is basically Inheritance.
 
 **Note: Interface cannot be instantiated but here there is no mechanism to stop us from instantiating the `InformalInterface` class.**
 
-
-
 ## Formal Interface
 
 Ideally when implementing an interface we dont want the `issubclass` to return True when implementing class doesn't define all the methods of the interface.
@@ -73,5 +69,3 @@ class FormalInterface(ABC):
 Here we have used annotations to convey which methods has to be compulsorily implemented by a class if it inherits from this base class.
 
 Here as the `FormalInterface` is inheriting from `ABC`, it can't be instantiated and any Class inheriting from `FormalInterface` cant be instantiated until it overrides the `some_method()` function in its definition.
-
-
